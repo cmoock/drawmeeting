@@ -25,6 +25,8 @@
   
   // Start this component
   function start () {
+    setName(localStorage.getItem("screenName"));
+
     // Create the chat room on the server
     appRoom = orbiter.getRoomManager().getRoom(appRoomID);
     if (orbiter.self().isInRoom(appRoomID)) {
@@ -91,6 +93,7 @@
   //==============================================================================
   function setName (value) {
     if (value && value !== "") {
+      localStorage.setItem('screenName', value);
       orbiter.self().setAttribute("screenName", value);
     }
   }

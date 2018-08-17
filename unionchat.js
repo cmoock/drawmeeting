@@ -8,10 +8,9 @@
     document.getElementById("chatOut").onkeydown = function () {
       if (event.keyCode == 13) sendMessage();
     };
-    document.getElementById("chatSend").onclick = function () {
-      sendMessage();
-    };
-    
+
+    dm.addClickListener(document.getElementById("chatSend"), sendMessage);
+
     orbiter.addEventListener(net.user1.orbiter.OrbiterEvent.READY, readyListener, this);
     
     // If Orbiter has already connected, start this component

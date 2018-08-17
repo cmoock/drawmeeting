@@ -35,7 +35,7 @@
     appRoom.addEventListener(net.user1.orbiter.RoomEvent.UPDATE_CLIENT_ATTRIBUTE, updateClientAttributeListener);
 
     document.getElementById("username").addEventListener("keydown", usernameKeyDownListener);
-    document.getElementById("setNameBtn").addEventListener("click", setNameClickListener);
+    dm.addClickListener(document.getElementById("setNameBtn"), setNameClickListener);
   }
 
   //==============================================================================

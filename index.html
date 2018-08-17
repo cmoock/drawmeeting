@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-122946505-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-122946505-1');
+    </script>
+
+    <!-- Google AdSense
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-1005146409611841",
+        enable_page_level_ads: true
+      });
+    </script>-->
+
+  <title>DrawMeeting</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--CSS-->
+    <link rel="stylesheet" href="reset.css" type="text/css">
+    <link rel="stylesheet" href="styles.css" type="text/css">
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body class="container">
+<header>
+    <h1><span id="drawmeeting"><span id="draw">DRAW</span>MEETING</span> - Free live chat and team drawing for your meetings</h1>
+    <div id="statusField">Loading</div>
+</header>
+<nav>
+    <!--Contains the user list-->
+    <ul id="userList"></ul>
+
+    <div id="chat">
+        <!--Incoming chat messages-->
+        <div id="chatPane"></div>
+
+        <!--Set username-->
+        <div id="setNameContainer"><input type="text" id="username"/><input type="submit" id="setNameBtn" value="Set Name"/></div>
+
+        <!--Outgoing chat form-->
+        <div id="sendContainer"><input type="text" id="chatOut"/><input type="submit" id="chatSend" value="Send"/></div>
+    </div>
+</nav>
+<main>
+    <div id="drawingPanel">
+        <div id="controls">
+            Pen Thickness:
+            <select id="thickness" class="fixed">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+            </select>
+
+            Pen Color:
+            <select id="color">
+                <option value="#AAAAAA">Grey</option>
+                <option value="#FFFFFF">White</option>
+                <option value="#000000">Black</option>
+                <option value="#FF0000">Red</option>
+                <option value="#0000FF">Blue</option>
+                <option value="#00FF00">Green</option>
+                <option value="#CC8F2B">Orange</option>
+                <option value="#f4ee42">Yellow</option>
+                <option value="#7700ff">Purple</option>
+                <option value="#ff00e1">Pink</option>
+            </select>
+        </div>
+
+        <div id="canvasContainer">
+            <!--The canvas where drawings will be displayed-->
+            <canvas id="canvas" touch-action="none"></canvas>
+        </div>
+    </div>
+</main>
+
+
+
+
+<aside id="galleryPanel">
+Gallery (Coming Soon!)
+
+<div><input type="submit" id="saveDrawingBtn" value="Save"/></div>
+
+    <div id="gallery"></div>
+
+</aside>
+<footer><div id="version">Version '18.6</div></footer>
+
+
+<!--Load the Orbiter JavaScript library (non-minified version). Use during development.-->
+<script type="text/javascript" src="http://unionplatform.com/cdn/Orbiter_latest.js"></script>
+<!--Load the Orbiter JavaScript library (minified version). Use for production.-->
+<!--<script type="text/javascript" src="http://unionplatform.com/cdn/Orbiter_latest_min.js"></script>-->
+
+<!--Load libs-->
+<script type="text/javascript" src="anchorme.min.js"></script>
+
+<!--Load application code.-->
+<script type="text/javascript" src="ui.js"></script>
+<script type="text/javascript" src="orbiterboot.js"></script>
+<script type="text/javascript" src="unionchat.js"></script>
+<script type="text/javascript" src="userlist.js"></script>
+<script type="text/javascript" src="uniondraw.js"></script>
+<script type="text/javascript" src="gallery.js"></script>
+
+</body>
+</html>

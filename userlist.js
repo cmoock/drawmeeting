@@ -34,13 +34,8 @@
     appRoom.addEventListener(net.user1.orbiter.RoomEvent.REMOVE_OCCUPANT, removeOccupantListener);
     appRoom.addEventListener(net.user1.orbiter.RoomEvent.UPDATE_CLIENT_ATTRIBUTE, updateClientAttributeListener);
 
-    document.getElementById("setNameBtn").addEventListener("click", function () {
-      var newUsername = document.getElementById("username").value;
-      if (newUsername && newUsername !== "") {
-        orbiter.self().setAttribute("screenName", newUsername);
-        document.getElementById("username").value = "";
-      }
-    });
+    document.getElementById("username").addEventListener("keydown", usernameKeyDownListener);
+    document.getElementById("setNameBtn").addEventListener("click", setNameClickListener);
   }
 
   //==============================================================================
@@ -72,6 +67,33 @@
     }
   }
 
+  //==============================================================================
+  // UI EVENT LISTENERS
+  //==============================================================================
+  function setNameClickListener () {
+    handleSetName();
+  }
+
+  function usernameKeyDownListener (e) {
+    if (e.keyCode == 13) {
+      handleSetName();
+    }
+  }
+
+  function handleSetName () {
+    var newUsername = document.getElementById("username").value;
+    setName(newUsername);
+    document.getElementById("username").value = "";
+  }
+
+  //==============================================================================
+  // USERNAME MANAGEMENT
+  //==============================================================================
+  function setName (value) {
+    if (value && value !== "") {
+      orbiter.self().setAttribute("screenName", value);
+    }
+  }
 
   //==============================================================================
   // LIST MANAGEMENT

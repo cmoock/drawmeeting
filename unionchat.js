@@ -84,7 +84,9 @@
   
   // Triggered when a chat message is received
   function chatMessageListener (fromClient, message) {
-    displayChatMessage("Guest" + fromClient.getClientID() + ": " + message);
+    var screenName = fromClient.getAttribute("screenName");
+    screenName = screenName ? screenName : "Guest" + fromClient.getClientID();
+    displayChatMessage(screenName + ": " + message);
   }
   
   // Displays a single chat message

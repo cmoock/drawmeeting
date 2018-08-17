@@ -59,13 +59,13 @@
   // Triggered when another client joins the chat room
   function addOccupantListener (e) {
     if (appRoom.getSyncState() != net.user1.orbiter.SynchronizationState.SYNCHRONIZING) { 
-      displayChatMessage("Guest" + e.getClientID() + " joined.");
+      displayChatMessage(getScreenName(e.getClient()) + " joined.");
     }
   }
     
   // Triggered when another client leaves the chat room
   function removeOccupantListener (e) {
-    displayChatMessage("Guest" + e.getClientID() + " left.");
+    displayChatMessage(getScreenName(e.getClient())  + " left.");
   }
     
   //==============================================================================
@@ -84,9 +84,7 @@
   
   // Triggered when a chat message is received
   function chatMessageListener (fromClient, message) {
-    var screenName = fromClient.getAttribute("screenName");
-    screenName = screenName ? screenName : "Guest" + fromClient.getClientID();
-    displayChatMessage(screenName + ": " + message);
+    displayChatMessage(getScreenName(fromClient) + ": " + message);
   }
   
   // Displays a single chat message
@@ -108,5 +106,10 @@
       chatPane.removeChild(chatPane.firstChild);
     }
     chatPane.scrollTop = chatPane.scrollHeight;
+  }
+
+  function getScreenName (client) {
+    var screenName = client.getAttribute("screenName");
+    return screenName ? screenName : "Guest" + client.getClientID();
   }
 })();

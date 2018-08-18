@@ -61,14 +61,14 @@
       setTimeout(function () {
         // Workaround: Delay 1 second to allow the client that just joined time to set its name
         // from local storage.
-        displayChatMessage(getScreenName(e.getClient()) + " joined.");
+        displayChatMessage(dm.getScreenName(e.getClient()) + " joined.");
       }, 1000);
     }
   }
     
   // Triggered when another client leaves the chat room
   function removeOccupantListener (e) {
-    displayChatMessage(getScreenName(e.getClient()) + " left.");
+    displayChatMessage(dm.getScreenName(e.getClient()) + " left.");
   }
     
   //==============================================================================
@@ -87,7 +87,7 @@
   
   // Triggered when a chat message is received
   function chatMessageListener (fromClient, message) {
-    displayChatMessage(getScreenName(fromClient) + ": " + message);
+    displayChatMessage(dm.getScreenName(fromClient) + ": " + message);
   }
   
   // Displays a single chat message
@@ -109,10 +109,5 @@
       chatPane.removeChild(chatPane.firstChild);
     }
     chatPane.scrollTop = chatPane.scrollHeight;
-  }
-
-  function getScreenName (client) {
-    var screenName = client.getAttribute("screenName");
-    return screenName ? screenName : "Guest" + client.getClientID();
   }
 })();

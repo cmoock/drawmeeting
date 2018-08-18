@@ -29,36 +29,34 @@
 
     // Create the chat room on the server
     appRoom = orbiter.getRoomManager().getRoom(appRoomID);
-    if (orbiter.self().isInRoom(appRoomID)) {
-      populateList();
-    }
+    populateList();
+    appRoom.addEventListener(net.user1.orbiter.RoomEvent.JOIN, joinRoomListener);
+    appRoom.addEventListener(net.user1.orbiter.RoomEvent.LEAVE, leaveRoomListener);
     appRoom.addEventListener(net.user1.orbiter.RoomEvent.ADD_OCCUPANT, addOccupantListener);
     appRoom.addEventListener(net.user1.orbiter.RoomEvent.REMOVE_OCCUPANT, removeOccupantListener);
     appRoom.addEventListener(net.user1.orbiter.RoomEvent.UPDATE_CLIENT_ATTRIBUTE, updateClientAttributeListener);
 
+    // UI Listeners (for set screenname)
     document.getElementById("username").addEventListener("keydown", usernameKeyDownListener);
     dm.addClickListener(document.getElementById("setNameBtn"), setNameClickListener);
   }
-
   //==============================================================================
   // ROOM EVENT LISTENERS
   //==============================================================================
-  // Triggered when a client joins the room
-  function addOccupantListener (e) {
-    var client = e.getClient();
-    var screenName = client.getAttribute("screenName");
-    screenName = screenName || "Guest" + client.getClientID();
-    console.log(orbiter.self())
-    if (client === orbiter.self()) {
-      screenName += " (You)";
-    }
-
-    addListOption(screenName, e.getClientID());
+  function joinRoomListener (e) {
+    populateList();
   }
-    
-  // Triggered when a client leaves the room
+
+  function leaveRoomListener (e) {
+    populateList();
+  }
+
+  function addOccupantListener (e) {
+    populateList();
+  }
+
   function removeOccupantListener (e) {
-    removeListOption(e.getClientID());
+    populateList();
   }
 
   // Triggered when a client attribute changes on a client the room
@@ -136,9 +134,13 @@
   
   function populateList () {
     clearList();
-    var occupants = appRoom.getOccupants();
-    for (var i = 0; i < occupants.length; i++) {
-      addListOption ("User" + occupants.getClientID());
+    if (appRoom && orbiter.self().isInRoom(appRoomID)) {
+      var occupants = appRoom.getOccupants();
+      for (var i = 0; i < occupants.length; i++) {
+        addListOption (dm.getScreenName(occupants[i])
+                       + (occupants[i] === orbiter.self() ? " (You)" : ""), occupants[i].getClientID());
+
+      }
     }
   }
   

@@ -10,3 +10,11 @@ dm.addClickListener = function (obj, listener) {
   var clickEvent = 'ontouchstart' in window ? 'touchstart' : 'click';
   obj.addEventListener(clickEvent, listener);
 }
+
+//==============================================================================
+// ORBITER
+//==============================================================================
+dm.getScreenName = function (client) {
+  var screenName = client.getAttribute("screenName");
+  return screenName ? screenName : "Guest" + client.getClientID();
+}

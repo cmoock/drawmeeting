@@ -25,7 +25,7 @@
 
   function saveDrawingToServer (canvasData) {
     var request = new XMLHttpRequest();
-    var url = 'https://drawmeeting-service.herokuapp.com/screenshots';
+    var url = 'http://api.drawmeeting.com/screenshots';
     // var payload = JSON.stringify({data: canvasData});
     var payload = "data=" + canvasData;
     request.open('POST', url, true);

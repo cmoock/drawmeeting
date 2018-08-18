@@ -4,6 +4,7 @@
   function init () {
     console.log("Gallery init()")
     dm.addClickListener(document.getElementById("saveDrawingBtn"), saveClickListener);
+    loadDrawings();
   }
 
   function saveClickListener () {
@@ -42,4 +43,15 @@
     request.send(payload);
   }
 
+  function loadDrawings () {
+    var request = new XMLHttpRequest();
+    var url = 'https://drawmeeting-service.herokuapp.com/screenshots';
+    request.open('GET', url, true);
+    request.onreadystatechange = function() {
+      if (request.readyState == 4 && request.status == 200) {
+        console.log(request.responseText);
+      }
+    }
+    request.send();
+  }
 })();

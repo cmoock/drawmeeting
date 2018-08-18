@@ -58,13 +58,17 @@
   // Triggered when another client joins the chat room
   function addOccupantListener (e) {
     if (appRoom.getSyncState() != net.user1.orbiter.SynchronizationState.SYNCHRONIZING) { 
-      displayChatMessage(getScreenName(e.getClient()) + " joined.");
+      setTimeout(function () {
+        // Workaround: Delay 1 second to allow the client that just joined time to set its name
+        // from local storage.
+        displayChatMessage(getScreenName(e.getClient()) + " joined.");
+      }, 1000);
     }
   }
     
   // Triggered when another client leaves the chat room
   function removeOccupantListener (e) {
-    displayChatMessage(getScreenName(e.getClient())  + " left.");
+    displayChatMessage(getScreenName(e.getClient()) + " left.");
   }
     
   //==============================================================================

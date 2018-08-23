@@ -52,22 +52,27 @@
     request.onreadystatechange = function() {
       if (request.readyState == 4 && request.status == 200) {
         var drawings = JSON.parse(request.responseText);
-        console.log(drawings)
-
         var gallery = document.getElementById("gallery");
         var img;
-
-        console.log("SERVER STRING: " +  drawings[drawings.length-1].data)
+        var id;
 
         for (var i = 0; i < drawings.length; i++) {
+          id = _.get(drawings[i], "_id.$oid");
+          id = id ? id : "image" + i;
           img = new Image();
-          img.onerror = function() {console.log("Error attempting to parse gallery image: " + i)};
-          img.onabort = function() {console.log("Aborted loading image: " + i)};
-          img.src = drawings[i].data;
-          img.style["max-width"] = "100%";
-          img.style["max-height"] = "100%";
-          img.style["margin-top"] = "5px";
-          gallery.insertBefore(img, gallery.firstChild);
+          img.id = id;
+          img.onerror = function() {console.log("Error attempting to parse gallery image: " + this.id)};
+          img.onabort = function() {console.log("Aborted loading image: " + this.id)};
+          img.onload = function () {
+            console.log("Loaded gallery image: " + this.id);
+            this.style["max-width"] = "100%";
+            this.style["max-height"] = "100%";
+            this.style["margin-top"] = "5px";
+            gallery.insertBefore(this, gallery.firstChild);
+          };
+          if (drawings[i].data != null) {
+            img.src = drawings[i].data;
+          }
         }
       }
     }

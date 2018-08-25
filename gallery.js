@@ -67,7 +67,7 @@
             console.log("Loaded gallery image: " + this.id);
             this.style["max-width"] = "100%";
             this.style["max-height"] = "100%";
-            this.style["margin-top"] = "5px";
+            this.style["margin-bottom"] = "5px";
             gallery.insertBefore(this, gallery.firstChild);
           };
           if (drawings[i].data != null) {

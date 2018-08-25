@@ -245,9 +245,19 @@ a:hover {
 }
 
 aside {
-    padding: 10px;
-    overflow: auto;
     min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin: 5px;
+}
+
+#galleryTitle {
+    margin-bottom: 5px;
+}
+
+#gallery {
+    overflow: auto;
 }
 
 footer {
@@ -256,6 +266,10 @@ footer {
     text-align: center;
     background-color: #AAAAAA;
     color: white;
+}
+
+.iosmomentumscroll {
+    -webkit-overflow-scrolling: touch;
 }
 
 #version {

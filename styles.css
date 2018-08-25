@@ -31,6 +31,7 @@ body, html {
     height: 100%;
     width: 100%;
     position: absolute;
+    background-color: #FFFFFF;
 }
 
 @media (min-width: 768px) {
@@ -43,7 +44,8 @@ body, html {
 
 @media (max-width: 768px) {
     main {
-        height: 100%;
+        flex-grow: 1;
+        margin-bottom: 5px;
     }
 
     #userList {
@@ -236,6 +238,7 @@ a:hover {
 aside {
     padding: 10px;
     overflow: auto;
+    min-height: 60px;
 }
 
 footer {

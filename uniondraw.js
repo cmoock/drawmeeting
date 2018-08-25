@@ -135,15 +135,20 @@
   function initCanvas () {
     // Retrieve canvas reference
     canvas = document.getElementById("canvas");
-    
+
     // If IE8, do IE-specific canvas initialization (required by excanvas.js)
     if (typeof G_vmlCanvasManager != "undefined") {
       this.canvas = G_vmlCanvasManager.initElement(this.canvas);
     }
-    
+
     // Size canvas
     canvas.width  = 2000;
     canvas.height = 2000;
+
+    // Move canvas to middle of container
+    var canvasContainer = document.getElementById("canvasContainer");
+    canvasContainer.scrollLeft = (canvas.offsetWidth - canvasContainer.offsetWidth) / 2;
+    canvasContainer.scrollTop = (canvas.offsetHeight - canvasContainer.offsetHeight) / 2;
 
     var ctx = canvas.getContext('2d');
     ctx.fillStyle = '#555555';

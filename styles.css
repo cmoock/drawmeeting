@@ -51,7 +51,12 @@ body, html {
     #userList {
         display: none;
     }
+}
 
+@media (max-width: 500px) {
+    #subhead {
+        display: none;
+    }
 }
 
 header {

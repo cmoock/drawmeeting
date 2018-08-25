@@ -183,7 +183,7 @@ input[type=button], input[type=submit], input[type=reset] {
     background-color: #4CAF50;
     border-radius: 4px;
     color: white;
-    padding: 4px;
+    padding: 0 4px 0 4px;
     text-decoration: none;
     cursor: pointer;
     font-size: 16px; /* Min 16px to prevent zoom on form usage on iOS */
@@ -216,6 +216,10 @@ DRAWING PANEL
 #controls {
     background-color: #EFEFEF;
     padding: 3px;
+}
+
+#saveDrawingBtn {
+    float: right;
 }
 
 select {

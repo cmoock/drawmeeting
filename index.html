@@ -54,7 +54,7 @@
 <main>
     <div id="drawingPanel">
         <div id="controls">
-            Pen Thickness:
+            Size:
             <select id="thickness" class="fixed">
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -65,7 +65,7 @@
                 <option value="20">20</option>
             </select>
 
-            Pen Color:
+            Color:
             <select id="color">
                 <option value="#AAAAAA">Grey</option>
                 <option value="#FFFFFF">White</option>
@@ -78,6 +78,8 @@
                 <option value="#7700ff">Purple</option>
                 <option value="#ff00e1">Pink</option>
             </select>
+
+            <input type="submit" id="saveDrawingBtn" value="Save"/>
         </div>
 
         <div id="canvasContainer">
@@ -92,8 +94,6 @@
 
 <aside id="galleryPanel">
 Gallery
-
-<div><input type="submit" id="saveDrawingBtn" value="Save"/></div>
 
     <div id="gallery"></div>
 

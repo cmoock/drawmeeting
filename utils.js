@@ -1,5 +1,10 @@
 var dm = {};
 
+dm.removeChildren = function (obj) {
+  while (obj.firstChild) {
+    obj.removeChild(obj.firstChild);
+  }
+}
 
 //==============================================================================
 // EVENTS

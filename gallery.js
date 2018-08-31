@@ -33,13 +33,15 @@
     var payload = "data=" + encodeURIComponent(canvasData);
     request.open('POST', url, true);
 
-    console.log("CANVAS STRING: " + canvasData)
+    //console.log("CANVAS STRING: " + canvasData)
     //Send the proper header information along with the request
     //request.setRequestHeader('Content-type', 'application/json');
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 
     request.onreadystatechange = function() {
-      if (request.readyState == 4 && request.status == 200) {
+      if (request.readyState == 4 && request.status >= 200 && request.status < 300) {
+        // Brute-force: reload all drawings after saving.
+        loadDrawings();
       }
     }
     request.send(payload);
@@ -53,6 +55,8 @@
       if (request.readyState == 4 && request.status == 200) {
         var drawings = JSON.parse(request.responseText);
         var gallery = document.getElementById("gallery");
+        // Clear entire gallery pane every time drawings are reloaded.
+        dm.removeChildren(gallery);
         var img;
         var id;
 

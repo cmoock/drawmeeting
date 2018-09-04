@@ -24,7 +24,7 @@ var appRoomID;
       
     // If required JavaScript capabilities are missing, abort
     if (!orbiter.getSystem().isJavaScriptCompatible()) {
-      status("Your browser is not supported.");
+      dm.status("Your browser is not supported.");
       return;
     }
     
@@ -32,7 +32,7 @@ var appRoomID;
     orbiter.addEventListener(net.user1.orbiter.OrbiterEvent.READY, readyListener, this);
     orbiter.addEventListener(net.user1.orbiter.OrbiterEvent.CLOSE, closeListener, this);
     
-    status("Connecting to Union...");
+    dm.status("Connecting to Union...");
     
     // Connect to Union Server
     orbiter.connect("tryunion.com", 80);
@@ -44,7 +44,7 @@ var appRoomID;
   //==============================================================================
   // Triggered when the connection is ready
   function readyListener (e) {
-    status("Connected");
+    dm.status("Connected");
     // Create the chat room on the server
     var appRoom = orbiter.getRoomManager().createRoom(appRoomID);
     appRoom.join();
@@ -52,6 +52,6 @@ var appRoomID;
   
   // Triggered when the connection is closed
   function closeListener (e) {
-    status("Orbiter connection closed.");
+    dm.status("Orbiter connection closed.");
   }
 })();

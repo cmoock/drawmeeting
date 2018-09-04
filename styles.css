@@ -272,6 +272,14 @@ footer {
     -webkit-overflow-scrolling: touch;
 }
 
+/*
+FOOTER
+ */
+
+#privateMeetingBtn {
+  float: left;
+}
+
 #version {
   float: right;
 }

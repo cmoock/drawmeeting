@@ -25,7 +25,7 @@
   
   // Start this component
   function start () {
-    setName(localStorage.getItem("screenName"));
+    dm.setName(localStorage.getItem("screenName"));
 
     // Create the chat room on the server
     appRoom = orbiter.getRoomManager().getRoom(appRoomID);
@@ -35,10 +35,6 @@
     appRoom.addEventListener(net.user1.orbiter.RoomEvent.ADD_OCCUPANT, addOccupantListener);
     appRoom.addEventListener(net.user1.orbiter.RoomEvent.REMOVE_OCCUPANT, removeOccupantListener);
     appRoom.addEventListener(net.user1.orbiter.RoomEvent.UPDATE_CLIENT_ATTRIBUTE, updateClientAttributeListener);
-
-    // UI Listeners (for set screenname)
-    document.getElementById("username").addEventListener("keydown", usernameKeyDownListener);
-    dm.addClickListener(document.getElementById("setNameBtn"), setNameClickListener);
   }
   //==============================================================================
   // ROOM EVENT LISTENERS
@@ -68,28 +64,9 @@
   }
 
   //==============================================================================
-  // UI EVENT LISTENERS
-  //==============================================================================
-  function setNameClickListener () {
-    handleSetName();
-  }
-
-  function usernameKeyDownListener (e) {
-    if (e.keyCode == 13) {
-      handleSetName();
-    }
-  }
-
-  function handleSetName () {
-    var newUsername = document.getElementById("username").value;
-    setName(newUsername);
-    document.getElementById("username").value = "";
-  }
-
-  //==============================================================================
   // USERNAME MANAGEMENT
   //==============================================================================
-  function setName (value) {
+  dm.setName = function (value) {
     if (value && value !== "") {
       localStorage.setItem('screenName', value);
       orbiter.self().setAttribute("screenName", value);

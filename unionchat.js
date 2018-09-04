@@ -6,10 +6,13 @@
   //==============================================================================
   function init () {
     document.getElementById("chatOut").onkeydown = function () {
-      if (event.keyCode == 13) sendMessage();
+      if (event.keyCode == 13) {
+        handleSendInput();
+        return false;  // Prevent default behavior
+      }
     };
 
-    dm.addClickListener(document.getElementById("chatSend"), sendMessage);
+    dm.addClickListener(document.getElementById("chatSend"), handleSendInput);
 
     orbiter.addEventListener(net.user1.orbiter.OrbiterEvent.READY, readyListener, this);
     
@@ -70,10 +73,45 @@
   function removeOccupantListener (e) {
     displayChatMessage(dm.getScreenName(e.getClient()) + " left.");
   }
-    
+
   //==============================================================================
   // CHAT SENDING AND RECEIVING
   //==============================================================================
+  function handleSendInput () {
+    if (hasName()) {
+      sendMessage();
+    } else {
+      requestName();
+    }
+  }
+
+  // Checks if the user has specified a name. If not, prompts for one.
+  function requestName () {
+    vex.defaultOptions.closeAllOnPopState = false;
+    vex.dialog.buttons.NO.text = "Continue as a Guest";
+    vex.dialog.buttons.YES.text = "OK";
+    var dialog = vex.dialog.open({
+      message: "What's your name?",
+      input: '<input name="newScreenName" type="text" class="vex-dialog-prompt-input" placeholder="" value="" >',
+      callback: function (value) {
+        if (value) {
+          if (value.newScreenName !== "") {
+            dm.setName(value.newScreenName);
+          }
+        } else {
+          localStorage.removeItem("screenName");
+          // Future: also remove screenname client attribute
+        }
+        sendMessage();
+      }
+    });
+  }
+
+  function hasName () {
+    var name = localStorage.getItem("screenName");
+    return name != null;
+  }
+
   // Sends a chat message to everyone in the chat room
   function sendMessage () {
     var outgoing = document.getElementById("chatOut");

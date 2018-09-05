@@ -25,6 +25,7 @@
 
     dm.privateMeetingBtnListener = function (e) {
       var randomCode = Math.floor(Math.random()*9999);
+      vex.defaultOptions.closeAllOnPopState = false;
       vex.dialog.buttons.YES.text = "Start Meeting";
       vex.dialog.buttons.NO.text = "Cancel";
       var dialog = vex.dialog.open({
@@ -33,6 +34,10 @@
         callback: function (value) {
           if (value) {
             location.href = getMeetingLink();
+            location.reload();
+            return true;
+          } else {
+            return false;
           }
         },
         afterOpen: function () {

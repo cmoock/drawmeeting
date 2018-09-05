@@ -24,6 +24,13 @@
     }
 
     dm.privateMeetingBtnListener = function (e) {
+      // If the modal is opened immediately after clicking the "Make Meeting" button,
+      // iOS shows the virtual keyboard, which blocks the modal most of the time. As
+      // a workaround, wait 200ms before opening the modal.
+      setTimeout(dm.openPrivateMeetingModal, 200);
+    }
+
+    dm.openPrivateMeetingModal = function (e) {
       var randomCode = Math.floor(Math.random()*9999);
       vex.defaultOptions.closeAllOnPopState = false;
       vex.dialog.buttons.YES.text = "Start Meeting";

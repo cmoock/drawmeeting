@@ -94,6 +94,7 @@ h1 {
 
 main {
     overflow: hidden;
+    min-height: 250px;
 }
 
 nav {

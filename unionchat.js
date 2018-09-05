@@ -78,7 +78,7 @@
   // CHAT SENDING AND RECEIVING
   //==============================================================================
   function handleSendInput () {
-    if (hasName()) {
+    if (hasName() || localStorage.getItem("screenNamePromptSeen") === "true") {
       sendMessage();
     } else {
       requestName();
@@ -100,8 +100,9 @@
           }
         } else {
           localStorage.removeItem("screenName");
-          // Future: also remove screenname client attribute
+          orbiter.self().deleteAttribute("screenName");
         }
+        localStorage.setItem("screenNamePromptSeen", "true");
         sendMessage();
       }
     });

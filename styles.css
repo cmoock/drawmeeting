@@ -284,3 +284,7 @@ FOOTER
 #version {
   float: right;
 }
+
+.vex.vex-theme-default .vex-content {
+    max-width: 90% !important;
+}

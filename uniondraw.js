@@ -478,12 +478,12 @@
     // browser from/ performing default mouse actions, such as text selection. 
     // In Internet Explorer, we "prevent default actions" by returning false. In 
     // other browsers, we invoke event.preventDefault().
-    if (event.preventDefault) {
-      if (event.target.nodeName != "SELECT") {
-        event.preventDefault();
+    if (event.target.id == "canvas") {
+      if (event.preventDefault) {
+          event.preventDefault();
+      } else {
+        return false;  // IE
       }
-    } else {
-      return false;  // IE
     }
   }
   
@@ -501,10 +501,12 @@
     penMove(mouseX, mouseY);
   
     // Prevent default browser actions, such as text selection
-    if (event.preventDefault) {
-      event.preventDefault();
-    } else {
-      return false;  // IE
+    if (event.target.id == "canvas") {
+      if (event.preventDefault) {
+        event.preventDefault();
+      } else {
+        return false;  // IE
+      }
     }
   }
   

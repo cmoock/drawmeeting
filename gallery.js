@@ -49,7 +49,9 @@
 
   function loadDrawings () {
     var request = new XMLHttpRequest();
-    var url = API_URL + 'screenshots';
+    var endpoint = API_URL + 'screenshots';
+    var queryString = "limit=10";
+    var url = endpoint + "?" + queryString;
     request.open('GET', url, true);
     request.onreadystatechange = function() {
       if (request.readyState == 4 && request.status == 200) {
